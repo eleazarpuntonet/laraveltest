@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// // Ruta para mostrar el formulario de actualización de perfil
+// Route::get('/profile', [ProfileController::class, 'edit'])->middleware('auth');
+
+// // Ruta para guardar los cambios en el perfil
+// Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth');
