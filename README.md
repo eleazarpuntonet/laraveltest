@@ -1,43 +1,6 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center"><a href="https://github.com/FmTod/">Guidelines</a></p>
-
-<p align="center"><a href="https://forms.gle/gSqn6SE3Wa65b3bS7">Questionnaire</a></p>
-
-<p align="center"><a href="./LEAME.md">Spanish / Español</a></p>
 
 # Quotes App
-
-## Skill Assessment
-
-The challenge will contain a few core features most applications have. These include connecting to an API, basic MVC, exposing an API, and finally, writing tests.
-
-The API we want you to connect to is [https://dummyjson.com/docs/quotes](https://dummyjson.com/docs/quotes). All the logic related to fetching and manipulating quotes from this API should be encapsulated within a separate composer package located in `./packages/quotes`.
-
-### Attention Programmers
-
-Please read the following instructions carefully before beginning the skill test:
-
-1. **Repository**:
-The project must be contained in the same repository adn application, both frontend and backend.
-
-2. **Complete All Tasks**:
-Each task is crucial and must be fully completed. Partial completion will not be considered.
-
-3. **Attention to Detail**:
-Pay close attention to the specifications and requirements for each task. Accuracy and adherence to instructions are key.
-
-4. **Quality of Work**:
-We are looking for clean, efficient, and well-documented code. Quality is as important as completion.
-
-5. **Bonus Features**:
-Implementing additional features or enhancements not listed in the tasks will earn you extra points. Creativity and innovation are highly valued.
-
-6. **Time Management**:
-We do not expect all tasks to be completed in one sitting.
-
-7. **Submission**:
-Once you have completed all tasks, submit your work as instructed.
 
 ## The application must have the following features
 
@@ -57,12 +20,6 @@ Once you have completed all tasks, submit your work as instructed.
 5. All API route should be secured with an user token
 6. Above features are to be tested with Feature tests
 
-### Extra Credit
-
-* Use composition API and setup script for Vue components
-* Use inertia to connect backend and frontend
-* Provide a separate file with documentation
-
 ## Developer
 
 Name: `Eleazar Ortega` <br/>
@@ -70,37 +27,12 @@ Email: `eleazar.sb18@gmail.com`<br/>
 
 ## Instructions
 
-### DO NOT START A NEW LARAVEL APP, USE THIS BOILERPLATE INSTEAD
-
 ### Cloning the repository
 
 1. Create a bare clone of the repository. (This is temporary and will be removed so just do it wherever.)
 
     ```bash
-    git clone --bare https://github.com/FmTod2/skill-assessment.git
-    ```
-
-2. Create a new repository on GitHub.
-
-3. Mirror-push your bare clone to your new repository.<br/>_Replace &lt;username&gt; with your actual Github username in the url below._<br/>_Replace &lt;repository&gt; with the name of your new repository._
-
-    ```shell
-    cd skill-assessment-quotes.git
-    git push --mirror https://github.com/<username>/<repository>.git
-    ```
-
-4. Delete the bare clone created in step 1.
-
-    ```shell
-    cd ..
-    rm -rf skill-assessment-quotes.git
-    ```
-
-5. You can now clone your repository, where you are going to be working, on your machine (in my case in the code folder).
-
-    ```shell
-    cd ~/code
-    git clone https://github.com/<username>/<repository>.git
+    git clone git@github.com:eleazarpuntonet/laraveltest.git
     ```
 
 ## Getting Started
@@ -114,7 +46,7 @@ Email: `eleazar.sb18@gmail.com`<br/>
 2. Install dependencies:
 
 <details>
-<summary> a. Docker (Recommended)</summary>
+<summary> Docker</summary>
 
 3. Install composer dependecies
 
@@ -130,54 +62,80 @@ Email: `eleazar.sb18@gmail.com`<br/>
 4. Start the container (Sail):
 
     ```shell
-    ./vendor/bin/sail up -d
+    ./vendor/bin/sail up -d --build
     ```
 
-5. Generate a new secret key:
+5. Run migrations (Sail):
+
+    ```shell
+    ./vendor/bin/sail artisan migrate
+    ```
+
+
+6. Generate a new secret key:
 
     ```shell
     ./vendor/bin/sail artisan key:generate
     ```
 
-</details>
-
-<details>
-<summary>b. Without Docker (Not recommended)</summary>
-
-3. Install all required dependencies
-
-    ```bash
-    composer install
-    ```
-
-4. Generate a new secret key:
+7. Publish packages pages:
 
     ```shell
-    php artisan key:generate
+    ./vendor/bin/sail artisan vendor:publish --tag=quotes-views
     ```
+
+8. Install frontend dependencies:
+
+    ```shell
+    npm install
+    ```
+
+9. Run frontend views:
+
+    ```shell
+    npm run dev
+    ```
+
+7. Publish packages config file:
+
+    ```shell
+    ./vendor/bin/sail artisan vendor:publish --tag=config
+    ```
+
+10. Go to http://localhost in your browser:
+11. Go to http://localhost/api/login in your browser:
+12. Go to http://localhost/api/quotes in your browser:
+13. Go to http://localhost/api/favorites-quotes in your browser:
+
+
 
 </details>
 
-‼️ <i>Note: Docker is recommended as you have all the external dependecies needed are already present in the provided container. Without docker you may need to install some external dependencies like MySQL or some extra PHP extensions required by the project</i>
 
-## Your first commit (IMPORTANT)
+## Acceso a la Aplicación
 
-1. Edit the README.md file and add your name and email.
+Una vez que los contenedores Docker estén en funcionamiento y el frontend se haya compilado, la aplicación estará disponible en `http://localhost:80`.
 
-    ```diff
-    - Name: `<your name>` <br/>
-    - Email: `<your email>` <br/>
-    + Name: Jhon Doe <br/>
-    + Email: jhondoe@exmaple.com <br/>
-    ```
+## Registro e Inicio de Sesión
 
-2. Submit your first commit with just the changes to the README.md file. Must be done before starting the assignment.
+1. Accede a la aplicación a través de tu navegador web.
 
-    ```shell
-    git add README.md
-    git commit -m "Initial commit"
-    git push
-    ```
+2. Completa el formulario de registro para crear una nueva cuenta.
+
+3. Inicia sesión con tu nueva cuenta.
+
+## Visualización de Quotes
+
+Una vez que hayas iniciado sesión, podrás ver las quotes en la aplicación.
+
+## Acceso a Favoritos
+
+En el menú superior de la aplicación, encontrarás un botón para acceder a tus quotes favoritas. Aquí podrás ver las quotes que has marcado como favoritas.
+
+## Realización de Requests a la API
+
+Para realizar requests a la API de quotes, asegúrate de agregar el encabezado `Accept` con el valor `application/json`. Además, debes haber iniciado sesión previamente en la ruta `localhost/api/login` para obtener un token de acceso a las rutas API del proyecto. Cuando realices un request, agrega también el encabezado `Authorization` con el valor `Bearer <token_obtenido_en_api/login>`.
+
 
 ## Executing Commands
 
