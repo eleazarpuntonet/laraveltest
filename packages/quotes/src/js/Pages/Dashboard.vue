@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
-import BreezeAuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { IQuote } from '@/Interfaces';
+import BreezeAuthenticatedLayout from './AuthenticatedLayout.vue';
+import { IQuote } from './Interfaces/Quote';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import axios from 'axios';
 import { Heart, RefreshCw } from 'lucide-vue-next';
@@ -22,7 +22,7 @@ async function favoriteQuote(quote: IQuote) {
     await axios.post<void>(route('favorite-quotes'), quote);
     favorite.value[quote.id] = true;
   } catch (error) {
-    console.error('Error favoriting quote:', error);
+    console.error('Error:', error);
   }
 }
 </script>

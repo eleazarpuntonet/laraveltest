@@ -23,7 +23,7 @@ class FavoritesQuotes
             return response()->json($quotes);
         }
 
-        return Inertia::render('FavQuotes', ['quotes' => $quotes]);
+        return Inertia::render('quotes/FavQuotes', ['quotes' => $quotes]);
     }
 
     /**

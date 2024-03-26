@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
-import BreezeAuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { IQuote } from '@/Interfaces';
+import BreezeAuthenticatedLayout from './AuthenticatedLayout.vue';
+import { IQuote } from './Interfaces/Quote';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import axios from 'axios';
 import { Heart, RefreshCw } from 'lucide-vue-next';
@@ -22,7 +22,7 @@ async function favoriteQuote(quote: IQuote) {
     await axios.post<void>(route('favorite-quotes'), quote);
     favorite.value[quote.id] = true;
   } catch (error) {
-    console.error('Error favoriting quote:', error);
+    console.error('Error:', error);
   }
 }
 </script>
@@ -36,7 +36,7 @@ async function favoriteQuote(quote: IQuote) {
                 <h2 class="col-span-2 font-semibold text-xl text-gray-800 leading-tight">
                 Dashboard
             </h2>
-              <Link href="/dashboard" :only="['quotes', 'ratelimit']"><RefreshCw /></Link>
+            <Link href="/dashboard" :only="['quotes', 'ratelimit']"><RefreshCw /></Link>
             </div>
         </template>
         <div class="py-12">

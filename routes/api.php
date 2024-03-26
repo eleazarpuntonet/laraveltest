@@ -23,12 +23,6 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/quotes', [Quotes::class, 'index']);
-
-    Route::get('/favorite-quotes', [FavoritesQuotes::class, 'index']);
-    Route::post('/favorite-quotes', [FavoritesQuotes::class, 'store']);
-    Route::delete('/favorite-quotes', [FavoritesQuotes::class, 'destroy']);
-
     Route::get('/logout', [TokenAuthController::class, 'destroy']);
 });
 
