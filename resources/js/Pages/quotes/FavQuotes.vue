@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import BreezeAuthenticatedLayout from './AuthenticatedLayout.vue';
 import Pagination from './Pagination.vue';
+import { IPagination, IQuote } from './Interfaces/Quote';
 import { Inertia } from '@inertiajs/inertia';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { Trash2, RefreshCw } from 'lucide-vue-next';
 import axios from 'axios';
 import { route } from 'ziggy-js';
-import { IPagination, IQuote } from './Interfaces/Quote';
 
 interface Props {
   quotes: IPagination<IQuote>;

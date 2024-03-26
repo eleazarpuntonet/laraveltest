@@ -7,6 +7,7 @@ import axios from 'axios';
 import { Heart, RefreshCw } from 'lucide-vue-next';
 import { ref } from 'vue';
 import { route } from 'ziggy-js';
+import { VCard, VContainer, VRow, VCol, VCardTitle, VCardSubtitle, VCardText, VCardActions } from 'vuetify/lib';
 
 interface Props {
   quotes: IQuote[];
@@ -47,6 +48,16 @@ async function favoriteQuote(quote: IQuote) {
                         Too Many Attempts.
                        </div>
                        <div v-for="q in quotes" class="grid grid-cols-2 grid-flow-col p-2 rounded border my-2">
+                        <v-card>
+                          <v-card-title>{{ q.quote }}</v-card-title>
+                          <v-card-subtitle>{{ q.author }}</v-card-subtitle>
+                          <v-card-text>
+                            <!-- Contenido adicional de la card -->
+                          </v-card-text>
+                          <v-card-actions>
+                            <!-- Acciones de la card, como botones -->
+                          </v-card-actions>
+                        </v-card>                          
                         <div class="col-span-2">{{q.quote}} - {{ q.author }}</div>
                         <div class="cursor-pointer"><Heart :fill="favorite[q.id]? 'red': 'black'" strokeWidth={0} @click="favoriteQuote(q)"/></div>
                        </div>
