@@ -1,0 +1,12 @@
+<?php
+
+namespace FmTod\Quotes\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FavoriteQuote extends Model
+{
+    use HasFactory;
+    protected $fillable = ['user_id', 'quote_id', 'quote', 'author'];
+}

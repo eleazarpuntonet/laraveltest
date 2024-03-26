@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use FmTod\Quotes\Quotes;
+use FmTod\Quotes\FavoritesQuotes;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,14 +26,20 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/quotes', [Quotes::class, 'index']);
+    Route::get('/dashboard', [Quotes::class, 'index'])->name('dashboard');
+    Route::get('/fav-quotes', [FavoritesQuotes::class, 'index'])->name('fav-quotes');
+    Route::post('/fav-quotes', [FavoritesQuotes::class, 'store']);
+    Route::delete('/fav-quotes', [FavoritesQuotes::class, 'destroy']); 
+    
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

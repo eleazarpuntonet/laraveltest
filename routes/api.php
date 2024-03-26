@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\TokenAuthController;
+use FmTod\Quotes\Quotes;
+use FmTod\Quotes\FavoritesQuotes;
+// use FmTod\Quotes\TokenAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['guest'])->group(function () {
+    Route::post('/login', [TokenAuthController::class, 'store']);
 });
 
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/quotes', [Quotes::class, 'index']);
+
+    Route::get('/favorite-quotes', [FavoritesQuotes::class, 'index']);
+    Route::post('/favorite-quotes', [FavoritesQuotes::class, 'store']);
+    Route::delete('/favorite-quotes', [FavoritesQuotes::class, 'destroy']);
+
+    Route::get('/logout', [TokenAuthController::class, 'destroy']);
+});
 
 // // Ruta para mostrar el formulario de actualización de perfil
 // Route::get('/profile', [ProfileController::class, 'edit'])->middleware('auth');

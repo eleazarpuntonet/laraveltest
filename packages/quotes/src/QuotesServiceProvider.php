@@ -7,6 +7,15 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class QuotesServiceProvider extends PackageServiceProvider
 {
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->publishes([
+            __DIR__.'/js/Pages' => resource_path('js/Pages/quotes'),
+        ], 'quotes-views');
+        
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
