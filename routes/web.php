@@ -28,12 +28,17 @@ Route::get('/', function () {
 
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/dashboard', [Quotes::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
+    Route::get('/users', 'UserController@index')->name('admin.users');
+    Route::post('/users/ban', 'UserController@ban')->name('admin.users.ban');
+    Route::get('/users/{user}/quotes', 'QuoteController@index')->name('admin.users.quotes');
+    Route::delete('/quotes', 'QuoteController@destroy')->name('admin.users.quotes.delete'); 
+});
 
 require __DIR__.'/auth.php';
